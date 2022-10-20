@@ -2,10 +2,11 @@ use date_time_parser::DateParser;
 use std::env;
 
 fn main() {
+    let date_format = "%Y-%m-%d";
     let query = get_query();
 
     let date = text_to_date(&query).expect("date should have been parsable");
-    println!("{}", date.format("%Y-%m-%d"))
+    println!("{}", date.format(date_format))
 }
 
 fn get_query() -> String {
