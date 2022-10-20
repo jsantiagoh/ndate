@@ -4,12 +4,8 @@ use std::env;
 fn main() {
     let query = get_query();
 
-    let date = text_to_date(&query);
-    if let Some(d) = date {
-        println!("{}", d.format("%Y-%m-%d"))
-    } else {
-        panic!("Incorrect arguments given to the application: {}", query)
-    }
+    let date = text_to_date(&query).expect("date should have been parsable");
+    println!("{}", date.format("%Y-%m-%d"))
 }
 
 fn get_query() -> String {
