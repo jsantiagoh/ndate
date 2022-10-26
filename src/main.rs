@@ -13,15 +13,8 @@ fn main() {
 
 /// Get the date query from command line arguments
 fn get_query() -> String {
-    let args: Vec<String> = env::args().collect();
-    join_all_but_first(args)
-}
-
-// Join all string elements of a vector into a single string but skip the first one
-fn join_all_but_first(mut args: Vec<String>) -> String {
-    let others: Vec<String> = args.drain(1..).collect();
-    let query = others.join(" ");
-    query
+    let args: Vec<String> = env::args().skip(1).collect();
+    args.join(" ")
 }
 
 // Converts a Natural Language date into a chrono::NaiveDate
@@ -44,19 +37,6 @@ mod tests {
         assert_eq!(
             text_to_date("tomorrow"),
             Some(Local::now().date_naive() + Duration::days(1))
-        );
-    }
-
-    #[test]
-    fn test_join_all() {
-        assert_eq!(
-            "A B C",
-            join_all_but_first(vec![
-                "--".to_string(),
-                "A".to_string(),
-                "B".to_string(),
-                "C".to_string()
-            ])
         );
     }
 }
