@@ -8,7 +8,7 @@ fn main() {
 
     let date = text_to_date(&query).expect("date should have been parsable");
 
-    println!("{}", date.format(DEFAULT_DATE_FORMAT))
+    println!("{}", date.format(DEFAULT_DATE_FORMAT));
 }
 
 /// Get the date query from command line arguments
@@ -19,8 +19,7 @@ fn get_query() -> String {
 
 // Converts a Natural Language date into a chrono::NaiveDate
 fn text_to_date(query: &str) -> Option<chrono::NaiveDate> {
-    let date = DateParser::parse(query);
-    date
+    DateParser::parse(query)
 }
 
 #[cfg(test)]
